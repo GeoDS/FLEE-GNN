@@ -1,0 +1,324 @@
+{
+    "WA": [
+        "ID",
+        "OR"
+    ],
+    "DE": [
+        "MD",
+        "PA",
+        "NJ"
+    ],
+    "DC": [
+        "MD",
+        "VA"
+    ],
+    "WI": [
+        "MI",
+        "MN",
+        "IA",
+        "IL"
+    ],
+    "WV": [
+        "OH",
+        "PA",
+        "MD",
+        "VA",
+        "KY"
+    ],
+    "HI": [
+        
+    ],
+    "FL": [
+        "AL",
+        "GA"
+    ],
+    "WY": [
+        "MT",
+        "SD",
+        "NE",
+        "CO",
+        "UT",
+        "ID"
+    ],
+    "NH": [
+        "VT",
+        "ME",
+        "MA"
+    ],
+    "NJ": [
+        "DE",
+        "PA",
+        "NY"
+    ],
+    "NM": [
+        "AZ",
+        "UT",
+        "CO",
+        "OK",
+        "TX"
+    ],
+    "TX": [
+        "NM",
+        "OK",
+        "AR",
+        "LA"
+    ],
+    "LA": [
+        "TX",
+        "AR",
+        "MS"
+    ],
+    "NC": [
+        "VA",
+        "TN",
+        "GA",
+        "SC"
+    ],
+    "ND": [
+        "MN",
+        "SD",
+        "MT"
+    ],
+    "NE": [
+        "SD",
+        "IA",
+        "MO",
+        "KS",
+        "CO",
+        "WY"
+    ],
+    "TN": [
+        "KY",
+        "VA",
+        "NC",
+        "GA",
+        "AL",
+        "MS",
+        "AR",
+        "MO"
+    ],
+    "NY": [
+        "NJ",
+        "PA",
+        "VT",
+        "MA",
+        "CT"
+    ],
+    "PA": [
+        "NY",
+        "NJ",
+        "DE",
+        "MD",
+        "WV",
+        "OH"
+    ],
+    "CA": [
+        "OR",
+        "NV",
+        "AZ"
+    ],
+    "NV": [
+        "ID",
+        "UT",
+        "AZ",
+        "CA",
+        "OR"
+    ],
+    "VA": [
+        "NC",
+        "TN",
+        "KY",
+        "WV",
+        "MD",
+        "DC"
+    ],
+    "CO": [
+        "WY",
+        "NE",
+        "KS",
+        "OK",
+        "NM",
+        "AZ",
+        "UT"
+    ],
+    "AK": [
+        
+    ],
+    "AL": [
+        "MS",
+        "TN",
+        "GA",
+        "FL"
+    ],
+    "AR": [
+        "MO",
+        "TN",
+        "MS",
+        "LA",
+        "TX",
+        "OK"
+    ],
+    "VT": [
+        "NY",
+        "NH",
+        "MA"
+    ],
+    "IL": [
+        "IN",
+        "KY",
+        "MO",
+        "IA",
+        "WI"
+    ],
+    "GA": [
+        "FL",
+        "AL",
+        "TN",
+        "NC",
+        "SC"
+    ],
+    "IN": [
+        "MI",
+        "OH",
+        "KY",
+        "IL"
+    ],
+    "IA": [
+        "MN",
+        "WI",
+        "IL",
+        "MO",
+        "NE",
+        "SD"
+    ],
+    "OK": [
+        "KS",
+        "MO",
+        "AR",
+        "TX",
+        "NM",
+        "CO"
+    ],
+    "AZ": [
+        "CA",
+        "NV",
+        "UT",
+        "CO",
+        "NM"
+    ],
+    "ID": [
+        "MT",
+        "WY",
+        "UT",
+        "NV",
+        "OR",
+        "WA"
+    ],
+    "CT": [
+        "NY",
+        "MA",
+        "RI"
+    ],
+    "ME": [
+        "NH"
+    ],
+    "MD": [
+        "VA",
+        "WV",
+        "PA",
+        "DC",
+        "DE"
+    ],
+    "MA": [
+        "RI",
+        "CT",
+        "NY",
+        "NH",
+        "VT"
+    ],
+    "OH": [
+        "PA",
+        "WV",
+        "KY",
+        "IN",
+        "MI"
+    ],
+    "UT": [
+        "ID",
+        "WY",
+        "CO",
+        "NM",
+        "AZ",
+        "NV"
+    ],
+    "MO": [
+        "IA",
+        "IL",
+        "KY",
+        "TN",
+        "AR",
+        "OK",
+        "KS",
+        "NE"
+    ],
+    "MN": [
+        "WI",
+        "IA",
+        "SD",
+        "ND"
+    ],
+    "MI": [
+        "WI",
+        "IN",
+        "OH"
+    ],
+    "RI": [
+        "CT",
+        "MA"
+    ],
+    "KS": [
+        "NE",
+        "MO",
+        "OK",
+        "CO"
+    ],
+    "MT": [
+        "ND",
+        "SD",
+        "WY",
+        "ID"
+    ],
+    "MS": [
+        "LA",
+        "AR",
+        "TN",
+        "AL"
+    ],
+    "SC": [
+        "GA",
+        "NC"
+    ],
+    "KY": [
+        "IN",
+        "OH",
+        "WV",
+        "VA",
+        "TN",
+        "MO",
+        "IL"
+    ],
+    "OR": [
+        "CA",
+        "NV",
+        "ID",
+        "WA"
+    ],
+    "SD": [
+        "ND",
+        "MN",
+        "IA",
+        "NE",
+        "WY",
+        "MT"
+    ]
+}
