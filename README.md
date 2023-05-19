@@ -73,5 +73,5 @@ python ./scripts/evaluation.py --info-dir ./data/info/ --data-path ./data/2012_d
 Plot the resilience heatmap for ground true label saved in `true-label-path`, predict value saved in `predict-label-path`, and the difference between these two.
 
 ```
-python ./scripts/plot.resilience.py --true-label-path ./data/2012_label.csv --predict-label-path ./training/random_output/predict.csv --info-dir ./data/info/ --output-dir ./training/random_output/
+python ./scripts/plot_resilience.py --true-label-path ./data/2012_label.csv --predict-label-path ./training/random_output/predict.csv --info-dir ./data/info/ --output-dir ./training/random_output/
 ```
