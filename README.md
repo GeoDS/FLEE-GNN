@@ -57,7 +57,7 @@ python ./scripts/generate_label.py --info-dir ./data/info --data-dir ./training/
 Save the best model and running loss to the `output-dir`.
 
 ```
-python ./scripts/train.py --info-dir ./data/info/ --data-dir ./training/noise_data_0.2/ --label-dir ./training/noise_label_0.2/--output-dir ./training/noise_output_0.2/ --size 100 --epochs 100
+python ./scripts/train.py --info-dir ./data/info/ --data-dir ./training/noise_data_0.2/ --label-dir ./training/noise_label_0.2/ --output-dir ./training/noise_output_0.2/ --size 100 --epochs 100
 ```
 
 ### Evaluate Model
