@@ -13,7 +13,11 @@ def calculate_node_resilience(edges, comm_level_dict, adjacency_dict, alpha=1.0,
                       'l1_2_val_s': 0.0,
                       'l1_val_s': 0.0,
                      }
-
+    if len(edges) == 0:
+        comm_stat_dict['node_resilience'] = 0.0
+        return comm_stat_dict
+    # print("edges: ", edges)
+    # print("length: ", len(edges))
     for e in edges:
         origin, destination, edge_data = e
         # initialize stat dict for specific comm_ttl
@@ -25,13 +29,14 @@ def calculate_node_resilience(edges, comm_level_dict, adjacency_dict, alpha=1.0,
         else: # for region-level and division-level data, we do not use adjacency (fixed beta)
             VAL_calibrated = edge_data['VAL'] * (1.0 if edge_data['AVGMILE'] < alpha else edge_data['AVGMILE']**0.5) * beta
         comm_stat_dict['comm_ttl'][edge_data['COMM_TTL']]['VAL'].append(VAL_calibrated)
+
         if edge_data['COMM_TTL'] in agri_comm_level_dict['l1_1']:
             comm_stat_dict['l1_1_val_s'] += VAL_calibrated
         if edge_data['COMM_TTL'] in agri_comm_level_dict['l1_2']:
             comm_stat_dict['l1_2_val_s'] += VAL_calibrated
 
     comm_stat_dict['l1_val_s'] = comm_stat_dict['l1_1_val_s'] + comm_stat_dict['l1_2_val_s']
-    
+    # print("comm_stat_dict: ", comm_stat_dict)
     # calculate dependency risk for level 1, set l1_1
     for comm_ttl in agri_comm_level_dict['l1_1']:
         if 'l1_1_sum_weighted_dependency_risk' not in comm_stat_dict:
@@ -77,6 +82,7 @@ def calculate_node_resilience(edges, comm_level_dict, adjacency_dict, alpha=1.0,
     # weighting
     comm_stat_dict['l1_1_abs_dependency_risk'] = comm_stat_dict['l1_1_dependency_risk'] * comm_stat_dict['l1_1_sum_weighted_dependency_risk']
     comm_stat_dict['l1_2_abs_dependency_risk'] = comm_stat_dict['l1_2_dependency_risk'] * comm_stat_dict['l1_2_sum_weighted_dependency_risk']
+    
     # normalization
     comm_stat_dict['l1_1_norm_abs_dependency_risk'] = comm_stat_dict['l1_1_abs_dependency_risk'] / (comm_stat_dict['l1_1_abs_dependency_risk'] + comm_stat_dict['l1_2_abs_dependency_risk'])
     comm_stat_dict['l1_2_norm_abs_dependency_risk'] = comm_stat_dict['l1_2_abs_dependency_risk'] / (comm_stat_dict['l1_1_abs_dependency_risk'] + comm_stat_dict['l1_2_abs_dependency_risk']) 
@@ -102,6 +108,9 @@ def get_resilience_df(G, agri_comm_level_dict, adjacency_dict, alpha=1.0, beta=0
 
     for node in tqdm(G.nodes):
         node_list.append(node)
+        # print("node: ", node)
+        # print("in edges: ", G.in_edges(node, data=True))
+        # print("out edges: ", G.out_edges(node, data=True))
         import_res = calculate_node_resilience(G.in_edges(node, data=True), agri_comm_level_dict, adjacency_dict, alpha, beta, level)
         export_res = calculate_node_resilience(G.out_edges(node, data=True), agri_comm_level_dict, adjacency_dict, alpha, beta, level)
         node_import_resilience_list.append(import_res['node_resilience'])
@@ -192,12 +201,15 @@ if __name__ == "__main__":
         df['destination_lon'] = df['Destination'].apply(lambda abbr: state_a2latlon_dict[abbr]['lon'])
 
         G = nx.from_pandas_edgelist(source = 'Origin', target = 'Destination', df = df, edge_attr=True, create_using=nx.MultiDiGraph())
-        try:
-            resilience = get_resilience_df(G, agri_comm_level_dict, state_adjacency_dict, alpha=1.0, beta=0.9, level='state')
-            resilience.sort_values('import_resilience', ascending=False)
-            resilience.to_csv(os.path.join(label_dir, 'label_{}.csv'.format(index)), index=False)
-        except:
-            print("index: {} failed".format(index))
-            failed_index.append(index)
+        # try:
+        #     resilience = get_resilience_df(G, agri_comm_level_dict, state_adjacency_dict, alpha=1.0, beta=0.9, level='state')
+        #     resilience.sort_values('import_resilience', ascending=False)
+        #     resilience.to_csv(os.path.join(label_dir, 'label_{}.csv'.format(index)), index=False)
+        # except:
+        #     print("index: {} failed".format(index))
+        #     failed_index.append(index)
+        resilience = get_resilience_df(G, agri_comm_level_dict, state_adjacency_dict, alpha=1.0, beta=0.9, level='state')
+        resilience.sort_values('import_resilience', ascending=False)
+        resilience.to_csv(os.path.join(label_dir, 'label_{}.csv'.format(index)), index=False)
         
     print(failed_index)

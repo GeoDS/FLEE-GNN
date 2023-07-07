@@ -69,6 +69,11 @@ if __name__ == "__main__":
     for i, node in enumerate(raw_label['node']):
         node2idx[node] = i
         idx2node[i] = node
+    
+    # remove column from raw_data if it is not in raw_label
+    all_nodes = set(raw_label['node'])
+    raw_data = raw_data[raw_data['Origin'].isin(all_nodes) & raw_data['Destination'].isin(all_nodes)]
+
 
     label = raw_label[['node', 'import_resilience']]
     edge_attr, edge_index =create_edge_attr_index(raw_data)

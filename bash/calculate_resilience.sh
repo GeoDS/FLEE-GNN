@@ -6,3 +6,5 @@ do
 done
 
 python ./scripts/calculate_resilience.py --true-label-path ./data/2012_label.csv --predict-label-path ./training/random_output/predict.csv
+
+python ./scripts/calculate_resilience.py --true-label-path ./data/2012_label.csv --predict-label-path ./training/noise_output_0.3_dropAVGMILE/predict.csv

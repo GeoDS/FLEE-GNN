@@ -12,7 +12,7 @@ def remove_rows(df, n):
     df.reset_index(drop=True, inplace=True)
     return df
 
-def add_rows(df, n):
+def add_rows(df, n, num_of_food):
     new_rows = []
     existing_rows = set(tuple(x) for x in df[['Origin', 'Destination', 'COMM_TTL']].values)
 
@@ -20,19 +20,21 @@ def add_rows(df, n):
         # Select random origin, destination and COMM_TTL
         origin = df['Origin'].sample().values[0]
         destination = df['Destination'].sample().values[0]
-        comm_ttl = np.random.randint(1, 9)
+        comm_ttl = np.random.randint(1, num_of_food + 1)
 
         # Make sure there is no row with the same [Origin, Destination, COMM_TTL]
         while (origin, destination, comm_ttl) in existing_rows:
             origin = df['Origin'].sample().values[0]
             destination = df['Destination'].sample().values[0]
-            comm_ttl = np.random.randint(1, 8)
+            comm_ttl = np.random.randint(1, num_of_food + 1)
 
         # Sample VAL, TON, AVGMILE from their distributions
         val = df['VAL'].sample().values[0]
         ton = df['TON'].sample().values[0]
         avgmile = df['AVGMILE'].sample().values[0]
-
+        # if val == 0 or ton == 0 or avgmile == 0:
+        #     print("The sampled value is 0. Sample again.")
+        #     exit()
         new_rows.append([comm_ttl, val, ton, avgmile, origin, destination])
         existing_rows.add((origin, destination, comm_ttl))
 
@@ -50,8 +52,10 @@ def change_entries(df, n):
         col = np.random.choice(['VAL', 'TON', 'AVGMILE'])
 
         # Add noise (20 % of the range)
-        noise = np.random.uniform(-0.1, 0.1) * (df[col].max() - df[col].min())
-        new_value = df.loc[idx, col].item() + noise
+        new_value = 0.0
+        while new_value <= 0.0:
+            noise = np.random.uniform(-0.1, 0.1) * (df[col].max() - df[col].min())
+            new_value = df.loc[idx, col].item() + noise
 
         # Get the minimum value for the same origin and destination
         origin = df.loc[idx, 'Origin']
@@ -60,6 +64,9 @@ def change_entries(df, n):
 
         # Make sure the new 'AVGMILE' is not smaller than the minimum 'AVGMILE' for the same origin and destination
         df.loc[idx, col] = max(new_value, min_avgmile)
+        # if max(new_value, min_avgmile) == 0:
+        #     print("Change the value of row {} and column {} from {} to {}".format(idx, col, df.loc[idx, col].item() - noise, df.loc[idx, col].item()))
+        #     exit()
     df.reset_index(drop=True, inplace=True)
     return df
 
@@ -70,6 +77,7 @@ def parse_args():
     parser.add_argument("--save-dir", type=str, help="the directory for saving the generated data")
     parser.add_argument("--size", type=int, help="the number of generated data")
     parser.add_argument("--noise-rate", type=float, help="the rate of noise")
+    parser.add_argument("--num-of-food", default=9, type=int, help="the number of food")
     args = parser.parse_args()
     return args
 
@@ -86,6 +94,6 @@ if __name__ == "__main__":
         os.makedirs(save_dir)
     for index in range(1, size + 1):
         df = remove_rows(original_df, num_of_modification)
-        df = add_rows(df, num_of_modification)
+        df = add_rows(df, num_of_modification, args.num_of_food)
         df = change_entries(df, num_of_modification)
         df.to_csv(os.path.join(save_dir, 'data_{}.csv'.format(index)), index=False)

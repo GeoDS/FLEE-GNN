@@ -1,5 +1,6 @@
 def create_edge_attr_index(df):
     df1 = df[["COMM_TTL", "VAL", "TON", "AVGMILE", "Origin", "Destination"]]
+    # df1 = df[["COMM_TTL", "Origin", "Destination"]]
     # First, create a MultiIndex for the new columns using 'Commodity Category'
     df1 = df1.set_index(["COMM_TTL", 'Origin', 'Destination'])
 
@@ -23,7 +24,6 @@ def create_edge_attr_index(df):
 
     # Create a separate dataframe for edge_attr without 'Origin' and 'Destination' columns
     edge_attr = df2.drop(columns=['Origin', 'Destination'])
-
     # Create a separate dataframe for edge_attr with 'Origin' and 'Destination' columns
     edge_index = df2[['Origin', 'Destination']]
 
