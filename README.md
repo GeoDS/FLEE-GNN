@@ -1,8 +1,28 @@
 # FLEE-GNN
 
+## Abstract
+
+
+## Reference
+If you find our code or ideas useful for your research, please cite our paper:
+
+Yuxiao Qu, Jinmeng Rao, Song Gao, Qianheng Zhang, Wei-Lun Chao, Yu Su, Michelle Miller, Alfonso Morales, Patrick Huber. (2023). [FLEE-GNN: A Federated Learning System for Edge-Enhanced Graph Neural Network in Analyzing Geospatial Resilience of Multicommodity Food Flows](https://doi.org/10.1145/3615886.3627742). In the Proceedings of 6th ACM SIGSPATIAL International Workshop on AI for Geographic Knowledge Discovery (GeoAI ’23), November 13, 2023, Hamburg, Germany. DOI: 10.1145/3615886.3627742
+
+
+```
+@inproceedings{qu2023flee-gnn,
+  title={FLEE-GNN: A Federated Learning System for Edge-Enhanced Graph Neural Network in Analyzing Geospatial Resilience of Multicommodity Food Flows},
+  author={Yuxiao Qu and Jinmeng Rao and Song Gao and Qianheng Zhang and Wei-Lun Chao and Yu Su and Michelle Miller and Alfonso Morales and Patrick Huber},
+  booktitle={The 6th ACM SIGSPATIAL International Workshop on AI for Geographic Knowledge Discovery (GeoAI ’23)},
+  year={2023},
+  pages={1-10},
+  organization={ACM}
+}
+```
+
 ## Environment Configuration
 
-### No plot
+### Requirements
 
 ```
 conda create -n resilience python=3.9
